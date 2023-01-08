@@ -7,8 +7,11 @@ html {
 }
 body{
     box-sizing: border-box;
-    max-width: 1440px;
+    margin: 0 auto;
     
+}
+header {
+    background-color: #EDF2EC;
 }
 .header {
     max-width: 1440px;
@@ -79,10 +82,13 @@ body{
 }
 
 .welcome {
-    max-width: 1440px;
-    height: 532px;
+    
     background-color: #EDF2EC;
-    display: flex;
+    
+}
+.welcome-container {
+    max-width: 1440px;
+    height: 532px;display: flex;
     flex-wrap: wrap;
     margin: auto;
 }
@@ -164,6 +170,9 @@ body{
 
 .about {
     background-color: #FFFFFF;
+    
+}
+.about-container {
     align-items: center;
     max-width: 1440px;
     height: 666px;
@@ -215,12 +224,15 @@ body{
 }
 
 .service {
+    
+    background-color: #EDF2EC;
+}
+.services-container {
     max-width: 1440px;
     height: 1300px;
     display: flex;
     flex-direction: column;
     margin: auto;
-    background-color: #EDF2EC;
 }
 
 .services-content {
@@ -316,6 +328,11 @@ body{
 
 .prices {
     background-color: #FFFFFF;
+    
+}
+
+
+.prices-container {
     max-width: 1440px;
     height: 560px;
     margin: 0 auto;
@@ -485,9 +502,13 @@ body{
 }
 
 .contacts {
-  max-width: 1440;
-  height: 550px;
+ 
   background-color: #EDF2EC;
+}
+.contacts-container {
+    max-width: 1440px;
+    height: 550px;
+    margin: auto;
 }
 
 .contacts-wrapper {
@@ -568,10 +589,14 @@ body{
 }
 
 footer {
-    max-width: 1440;
+    background-color: #FFFFFF;
+}
+.footer-container {
+    max-width: 1440px;
     height: 130px;
     display: flex;
     justify-content: center;
+    margin: auto;
 }
 
 .footer-wrapper a{
