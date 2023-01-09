@@ -256,6 +256,8 @@ header {
 }
 
 .service-button {
+    margin-left: 5px;
+    margin-top: 10px;
     width: 55.5%;
     height: 50px;
     display: flex;
@@ -296,10 +298,17 @@ header {
 .service-item{
    width: 27%;
    height: 47.16%;
+   border: 1px solid #E3E1D5;
+   border-radius: 20px;
 
 }
 
+.service-item:nth-child(2) {
+    padding-left: 10px;
+}
+
 .service-item:nth-child(4) {
+  padding-left: 5px;
   margin-top: 50px;
 }
 .service-item:nth-child(5) {
@@ -309,6 +318,9 @@ header {
     margin-top: 50px;
  }
     
+.service-img {
+ width: 100%;
+} 
 
 .service-text1 {
     color:#E06733;
@@ -536,7 +548,7 @@ header {
     letter-spacing: 0em;
     text-align: left;
     margin-top: 60px;
-    margin-left: 35px;
+    margin-left: 45px;
     color: #499A18;
 }
 
