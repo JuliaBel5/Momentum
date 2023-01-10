@@ -157,6 +157,7 @@ header {
     align-items: center;
     width: 158px;
     height: 44px;
+    background-color: inherit;
 }
 
 .btn:hover {
@@ -164,7 +165,7 @@ header {
     background-color: #E06733;
     color: #EDF2EC;
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.3s;
     transform: scale(1.15);
 }
 
