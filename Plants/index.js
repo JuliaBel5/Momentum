@@ -15,11 +15,13 @@ document.addEventListener( 'click', (e) => {
 	}
 })
 
-const popup = document.querySelector('.header__burger')
+const popup = document.querySelector('main')
+const popup2 = document.querySelector('footer')
 document.addEventListener( 'click', (e) => {
 	const withinBoundaries = e.composedPath().includes(popup);
+	const withinBoundaries2 = e.composedPath().includes(popup2)
  
-	if ( ! withinBoundaries ) {
+	if ( withinBoundaries || withinBoundaries2 ) {
 		menu.classList.remove('active')
 		hamburger.classList.remove('active'); 
 	}
