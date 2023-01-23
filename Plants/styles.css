@@ -172,7 +172,7 @@ header {
         top: 0;
         right: -70%;
         width: 60%;
-        height: 30%;
+        height: 35%;
         background: #EDF2EC;
         opacity: 0.7;
         border-radius: 20px;
@@ -247,7 +247,7 @@ header {
         top: 0;
         right: -70%;
         width: 60%;
-        height: 30%;
+        height: 35%;
         background: #EDF2EC;
         opacity: 0.7;
         border-radius: 20px;
@@ -261,8 +261,7 @@ header {
         }
         .burger__menu li {
             list-style-type: none;
-            
-            }
+         }
          
         .burger__menu a {
             text-decoration: none;
@@ -526,7 +525,6 @@ header {
     line-height: 25px;
     width: 99%;
     padding-left: 5px;
-    letter-spacing: 0.2px;
     padding-bottom: 0;
 
     }
