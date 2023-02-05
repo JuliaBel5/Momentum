@@ -261,6 +261,7 @@ ellipsys1[1].addEventListener('click', ()  => {
  const cityName = document.querySelector('.city-name');
  const panel =  document.querySelectorAll('.panel');
  const panelArr = Array.from(panel);
+ const woman768 = document.querySelector('.woman768');
 
  function hide () {
 	select.classList.toggle('active');
@@ -270,61 +271,48 @@ ellipsys1[1].addEventListener('click', ()  => {
  function toggle (i) {
 	panelArr[i].classList.toggle('active');
  }
+
+ function woman () {
+	woman768.classList.toggle('active')
+ }
  
  
  select.addEventListener('click', ()  => {
 	hide();
-	//selectCont.classList.toggle('active');
-	//select.classList.toggle('active');
-	//contacts.classList.toggle('active');
+	
 	for (let i=0; i < panelArr.length; i++) {
 		if (panelArr[i].classList.contains('active')) {
-		toggle(i), cityName.innerHTML = 'City'} };
+		toggle(i), cityName.innerHTML = 'City', woman ()} };
 	
-	//if (panelArr[1].classList.contains('active')) {
-		//toggle(1)};
-	//if (panelArr[2].classList.contains('active')) {
-	//	toggle(2)};
-	//if (panelArr[3].classList.contains('active')){
-		//toggle(3)};
+	
 	
  })
 cityArr[0].addEventListener('click', ()  => {
-	//select.classList.toggle('active');
-	//selectCont.classList.toggle('active');
-	//contacts.classList.add('green');
 	hide ();
-	cityName.innerHTML = 'Canandaigua, NY';
 	toggle(0);
-	//panelArr[0].classList.toggle('active');
-	
+	woman ();
+	cityName.innerHTML = 'Canandaigua, NY';
+		
  })
  cityArr[1].addEventListener('click', ()  => {
 	hide ();
 	toggle(1);
-	//selectCont.classList.toggle('active');
-	//contacts.classList.add('green');
-	//select.classList.toggle('active');
+	woman ();
 	cityName.innerHTML = 'New York City';
-	//panelArr[1].classList.toggle('active');
  })
 
  cityArr[2].addEventListener('click', ()  => {
 	hide ();
 	toggle(2);
-	//selectCont.classList.toggle('active');
-	//contacts.classList.add('green');
-	//select.classList.toggle('active');
+	woman ();
 	cityName.innerHTML = 'Yonkers, NY';
-	//panelArr[2].classList.toggle('active');
+	
  })
 
  cityArr[3].addEventListener('click', ()  => {
 	hide ();
 	toggle(3);
-	//selectCont.classList.toggle('active');
-	//contacts.classList.add('green');
-	//select.classList.toggle('active');
+	woman ();
 	cityName.innerHTML = 'Sherrill, NY';
-	//panelArr[3].classList.toggle('active');
+
  })
