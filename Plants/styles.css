@@ -2131,20 +2131,7 @@ header {
     .woman {
         display: none;
     }
-    .woman768 {
-        display: flex;
-        height: 27.87%;
-        width: 26.04%;
-        margin: 0 auto;
-        padding-left: 0;    
-    }
-    .woman768__img {
-        height: 100%;
-        width: 100%;    
-    }
-}
-@media (min-width: 319px) and (max-width: 379px) {
-    .woman {
+    .woman768.active {
         display: none;
     }
     .woman768 {
@@ -2157,6 +2144,31 @@ header {
     .woman768__img {
         height: 100%;
         width: 100%;    
+    }
+    .woman768.active {
+        display: none;
+    }
+}
+@media (min-width: 319px) and (max-width: 379px) {
+    .woman {
+        display: none;
+    }
+    .woman768.active {
+        display: none;
+    }
+    .woman768 {
+        display: flex;
+        height: 27.87%;
+        width: 26.04%;
+        margin: 0 auto;
+        padding-left: 0;    
+    }
+    .woman768__img {
+        height: 100%;
+        width: 100%;    
+    }
+    .woman768.active {
+        display: none;
     }
 }
 
