@@ -316,3 +316,4 @@ cityArr[0].addEventListener('click', ()  => {
 	cityName.innerHTML = 'Sherrill, NY';
 
  })
+console.log("Все функции реализованы. Функции аккордиона и селекта открываются по клику на стрелочки.");
