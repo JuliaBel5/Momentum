@@ -1154,6 +1154,31 @@ header {
      width: 42.07%;
      height: 31.56%;
       }
+    .service-item1.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item2.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item3.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item4.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item5.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item6.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    
 }
 
 @media (min-width: 380px) and (max-width: 767px) {
@@ -1169,6 +1194,30 @@ header {
         width: 100%;
         height: 15.68%;
       }
+      .service-item1.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item2.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item3.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item4.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item5.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
+    .service-item6.enabled {
+        transition: 0.4s linear;
+        transform: scale(1.05);
+    }
     }
  @media (min-width: 319px) and (max-width: 379px) {
     .service-item1, .service-item4 {
@@ -1183,15 +1232,39 @@ header {
     width: 100%;
       height: 15.68%;
          }
+         .service-item1.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
+        .service-item2.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
+        .service-item3.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
+        .service-item4.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
+        .service-item5.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
+        .service-item6.enabled {
+            transition: 0.4s linear;
+            transform: scale(1.05);
+        }
 }
 
 
 .service-item2  {
-    padding-left: 10px;
+    padding-left: 0px;
 }
 
 .service-item3  {
-  padding-left: 5px;
+  padding-left: 0px;
   
 }
 
@@ -1587,7 +1660,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    width: 40%;
+    width: 45%;
     height: 405px;
 }
 
@@ -2180,7 +2253,8 @@ header {
     letter-spacing: 0em;
     text-align: left;
     margin-top: 60px;
-    margin-left: 45px;
+    margin-left: 0px;
+    padding-left: 5px;
     color: #499A18;
 }
 
@@ -2633,13 +2707,13 @@ footer {
     }
 }
 .footer-text {
-    width: 17.27%;
-    margin-left: 5px;
+    width: 20.27%;
+    margin-left: 60px;
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
     .footer-text {
-        width: 27.5%;
+        width: 28%;
         margin-left: 0;
         margin-bottom: 15px;
     }
