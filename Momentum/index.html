@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player">
+      <!--<audio src="https://7oom.ru/audio/naturesounds/07%20Birds%20(7oom.ru).mp3"></audio>-->
+      
+      <div class="wrapper">
+        <div class="details">
+            <div class="now-playing">PLAYING x OF y</div>
+            <div class="track-name">Track Name</div>
+        </div>
+
+        <div class="slider_container">
+            <div class="current-time">00:00</div>
+             <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+             <div class="duration">00:00</div>
+        </div>
+
+        <div class="slider_container">
+          <i class='fas fa-volume-down'></i><br/>
+             <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="">
+             <i class="fas fa-volume-up"></i>
+             <i class="fas fa-volume-mute fa-2x"></i>
+        </div>
+
+
+     <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <button class="play player-icon"></button>
+        <button class="play-next player-icon"></button>
+        
+      </div> 
+    </div>
+
+      <ul class="play-list">
+      </ul>
+    </div>
+
+    <div class="settings">
+      <div class="settings__img">
+          <img src="assets/img/settings1.png" alt="Settings" class="gear">
+          <img src="assets/img/croce1.png" alt="Close" class="croce" >
+      </div>
+
+    <div class = "popup"> 
+      <div class = "popup__wrapper">
+      <div class="popup__title"> Settings:</div>
+      <div class="popup__body">
+        <div class="titles">
+        <div class = "show-item" id="show_language"> Select language:</div>
+        <div class="show-item" id="show_weather"> Show/hide weather</div>
+        <div class="show-item" id="show_time">Show/hide time</div>
+        <div class="show-item" id="show_greetings">Show/hide greetings</div>
+        <div class="show-item" id="show_quotes">Show/hide quotes</div>
+        <div class="show-item" id="show_imageSource">Select image source</div>
+        <div class="show-item" id="show_player">Show/hide player</div>
+                <div class = "show-item" id="show_todo"> Show-hide ToDo</div>
+      </div>
+      <div class="switches">
+        <div class = "language__select">
+        <button class="languageEn" id="En">Eng</button>
+          <button class="languageRu" id="Ru">Ru</button>
+        </div>
+        <div class = "weather__select">
+          <button class="weatherOn" id="En">On</button>
+            <button class="weatherOff" id="Ru">Off</button>
+          </div>
+          <div class = "time__select">
+            <button class="timeOn" id="En">On</button>
+              <button class="timeOff" id="Ru">Off</button>
+            </div>
+            <div class = "greetings__select">
+              <button class="greetingsOn" id="En">On</button>
+                <button class="greetingsOff" id="Ru">Off</button>
+              </div>
+              <div class = "quotes__select">
+                <button class="quotesOn" id="En">On</button>
+                  <button class="quotesOff" id="Ru">Off</button>
+                </div>
+                <select class = "imgSource__select" onchange="this.style.backgroundColor=this.options[this.selectedIndex].style.backgroundColor">
+                  <option style="background-color:rgb(99, 173, 229)" value="Github">Github</option>
+                  <option style="background-color:rgb(161, 161, 240)" value="Flickr">Flickr</option>
+                  <option style="background-color:rgb(159, 227, 219)" value="Unsplash">Unsplash</option>
+                </select>
+               <div class = "player__select">
+               <button class="playerOn" id="En">On</button>
+                   <button class="playerOff" id="Ru">Off</button>
+                  </div>                  
+                  
+                  <div class = "todo__select">
+                  <button class="todoOn" id="En">On</button>
+                    <button class="todoOff" id="Ru">Off</button>
+                  </div>
+      </div>
+      
+      </div>
+    </div>
+    </div>
+  
+  
+    <div class="weather">
+      <input type="text" class="city" value = "Minsk" placeholder="Enter your city"/>
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <time class="time"></time>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input type="text" class="name" placeholder=""/>
+    </div>
+  </main>
+  <footer class="footer">
+    <button class="change-quote"></button>
+    <div>
+      <div class="quote"></div>
+      <div class="author"></div>
+    </div>
+  </footer>
+  <script type="module" src="script.js"></script>
+  
+</body>
+</html>
