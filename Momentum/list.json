@@ -1,0 +1,18 @@
+[
+   { "En": "'morning', 'afternoon', 'evening', 'night'",
+      "Ru": "'Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'"
+    },
+    { "En":"[Enter your city]",
+      "Ru":"[Введите город]"
+    },
+
+    { "url": "`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=ru&appid=3a1b915768c912a017bc99063d148140&units=metric`"
+     },
+     {
+    "wind": "`Скорость ветра: ${(Math.round(data.wind.speed))} м/с,`"
+    },
+    {   
+     "humidity": "`Влажность: ${(Math.round(data.main.humidity))}%`"
+    }
+ 
+ ]
