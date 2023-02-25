@@ -37,9 +37,9 @@ body {
 }
 
 .player.active {
-  transform: translate(-80%, -20%);
+  transform: translate(-120%, -20%);
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s;
 }
 
 
@@ -283,13 +283,23 @@ i.fa-volume-up {
 }
 .settings__img {
   position: absolute;
-  top: 5%;
+  top: 4.5%;
   left: 79%;
   transform: translate(-50%, -50%);
   transition: all 0.5s;
   z-index: 5;
 }
 
+@media (max-width: 1250px) {
+  .settings__img {
+    position: absolute;
+    top: 55%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+    z-index: 5;
+  }
+}
 
 .popup {
   position: fixed; 
@@ -316,14 +326,23 @@ i.fa-volume-up {
   
 }
 
+@media (max-width: 1250px) {
+  .popup.active {
+    transform: translateY(285%) translateX(35%);
+    display: initial;
+    overflow: hidden;
+    
+  }
+}
+
 .gear.active {
   display: none;
 }
 
 .croce.active {
   display: initial;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   top: 10px;
  }
 
@@ -453,7 +472,7 @@ margin: 10px;
   transition: all 0.3s;
 }
 .weather.active {
-  transform: translate(80%, -20%);
+  transform: translate(120%, -20%);
   visibility: hidden;
   transition: all 0.3s;
 }
@@ -549,12 +568,12 @@ margin: 10px;
   font-family: 'Arial-MT';
   font-size: 100px;
   letter-spacing: -4px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 .time.active {
-  transform: translate(-80%, -20%);
+  transform: translate(-120%, -20%);
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 
 
@@ -562,12 +581,12 @@ margin: 10px;
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 .date.active {
   transform: translate(-80%, -20%);
   visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 
 .greeting-container {
