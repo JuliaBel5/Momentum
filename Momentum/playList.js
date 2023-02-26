@@ -24,7 +24,7 @@ const playList = [
         
     {      
       title: 'Nicholas Hooper - When Ginny Kissed Harry   ',
-      src: '/assets/sounds/Nicholas Hooper - When Ginny Kissed Harry.mp3',
+      src: './assets/sounds/Nicholas Hooper - When Ginny Kissed Harry.mp3',
       duration: '2:25'
     },  
     
