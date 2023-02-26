@@ -15,19 +15,34 @@ const error = document.querySelector('.weather-error');
 const refresh = document.querySelector('.change-quote');
 
 const eng = document.querySelector('.languageEn');
-eng.classList.add('active');
+
 const ru = document.querySelector('.languageRu');
 var language = "En";
 var imgSource = 'Github';
 let timeOfDay = getTimeOfDay();
-const list = './list.json';
+//const list = './list.json';
+
+language = localStorage.getItem('language');
+if (!localStorage.getItem('language')) {
+    language = "En";
+    
+}
+
+if (language === "En") {
+    eng.classList.add('active');
+    ru.classList.remove('active');
+}
+
+if (language === "Ru") {
+    ru.classList.add('active');
+    eng.classList.remove('active');
+      };
 
 ru.addEventListener('click', function() {
     language = "Ru";
     console.log(language);
     ru.classList.add('active');
     eng.classList.remove('active');
-   // settingsTitle.textContent = "Настройки";
     changeLang();
     return language;
       });
@@ -36,49 +51,33 @@ eng.addEventListener('click', function() {
     language = "En";
     eng.classList.add('active');
     ru.classList.remove('active');
-    //settingsTitle.textContent = "Settings";
     changeLang();
     return language;
   });
 
 function changeLang() {
-   
-    getWeather()
+      
     showTime() 
     getQuotes()
-    language ==="Ru" ? city.placeholder = '[Введите город]' : city.placeholder = '[Enter your city]';
-    language ==="Ru" ? now_playing.textContent = "Дорожка " + `${playNum + 1}` + " из " + `${playList.length}`: now_playing.textContent = "Playing " + `${playNum + 1}` + " of " + `${playList.length}`;
-    language ==="Ru" ? trackName.textContent = "Название дорожки" : trackName.textContent = "Track name";
+    getWeather()
+    setCityLang ()
+    setPlayerLang ()
     changeSetLang();
-    changeTitle ()
+    changeTitle ();
     
 }
 let userLang = language;
 console.log(userLang);
-//city.placeholder = list[1].userLang;
 
-function changeSetLang() {
-if (language === "Ru") {
-    for(let i=0; i < showItemsArr.length; i++) {
-        showItemsArr[i].textContent = state[0].showItems[i];
-        console.log(showItemsArr);
-
-    }
-  } else{
-    for(let i=0; i < showItemsArr.length; i++) {
-        showItemsArr[i].textContent = state[1].showItems[i];
-        console.log(showItemsArr);
-
-    }
-  }
+function setCityLang (){
+    language ==="Ru" ? city.placeholder = '[Введите город]' : city.placeholder = '[Enter your city]';
+    if (language ==="En" && city.value === "Minsk" || language ==="En" && city.value ==="Минск" ){ city.value = "Minsk" ;
+        
+   } else if (language ==="Ru" && city.value === "Minsk" ){
+       city.value = "Минск";
+   }
 }
-const settingsTitle = document.querySelector('.popup__title');
-
-function changeTitle () {
-    language ==="Ru" ? settingsTitle.textContent = state[2].Settings[0] : settingsTitle.textContent = state[2].Settings[1]
-    console.log(state[2].Settings[0]);
-}
-
+setCityLang ()
 
 
 function showTime() {
@@ -107,17 +106,12 @@ function getTimeOfDay() {
     let result = '';
     if (hours < 6 && hours >= 0) {
         result = timeOfDayEn[3];
-     // eng.classList.contains('active') ? result = timeOfDayEn[3] : result = timeOfDayRu[3];
-
     } else if (hours < 12 && hours >= 6) {
         result = timeOfDayEn[0];
-       // eng.classList.contains('active') ?  result = timeOfDayEn[0] : result = timeOfDayRu[0];
     } else if (hours < 18 && hours >= 12) {
         result = timeOfDayEn[1];
-       // eng.classList.contains('active')? result = timeOfDayEn[1] :  result = timeOfDayRu[1];
     } else {
         result = timeOfDayEn[2];
-      //  eng.classList.contains('active')? result = timeOfDayEn[2] :  result = timeOfDayRu[2];
     }
     return result;
    
@@ -131,16 +125,12 @@ function showGreeting() {
     let result = '';
     if (hours < 6 && hours >= 0) {
       eng.classList.contains('active') ? timeOfDay = timeOfDayEn[3] : timeOfDay = timeOfDayRu[3];
-      
     } else if (hours < 12 && hours >= 6) {
         eng.classList.contains('active') ?  timeOfDay = timeOfDayEn[0] : timeOfDay = timeOfDayRu[0];
-       
     } else if (hours < 18 && hours >= 12) {
-        eng.classList.contains('active')? timeOfDay = timeOfDayEn[1] :  timeOfDay = timeOfDayRu[1];
-       
+        eng.classList.contains('active')? timeOfDay = timeOfDayEn[1] :  timeOfDay = timeOfDayRu[1];    
     } else {
         eng.classList.contains('active')? timeOfDay = timeOfDayEn[2] :  timeOfDay = timeOfDayRu[2];
-      
     }
     
    eng.classList.contains('active')? greetingText = `Good ${timeOfDay}, ` : greetingText = `${timeOfDay}, `;
@@ -152,17 +142,61 @@ function showGreeting() {
 
 function setLocalStorage() {
     localStorage.setItem('userName', userName.value);
+    localStorage.setItem('imgTag', imgSel.value);
+    localStorage.setItem('imgSource', imgSourceSelect.value);
+    localStorage.setItem('language', language);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
     if (localStorage.getItem('userName')) {
         userName.value = localStorage.getItem('userName');
-    }
-}
+    } 
+    if (localStorage.getItem('imgTag')) {
+        imgTag = localStorage.getItem('imgTag');
+    } 
+    if (localStorage.getItem('imgSource')) {
+        imgSource = localStorage.getItem('imgSource');
+     }
+    if (localStorage.getItem('language')) {
+        language = localStorage.getItem('language');
+}}
 window.addEventListener('load', getLocalStorage);
 
-let randomImgNumber = (String(getRandomNum(0, 20)))
+let randomImgNumber = (String(getRandomNum(1, 20)))
+let imgSel = document.querySelector('.imgTag');
+let imgTags = document.querySelectorAll('.imgTags');
+let imgTagsArr = Array.from(imgTags);
+let imgTag = imgSel.value;
+imgSel.value = getLocalStorage(imgTag);
+if (!getLocalStorage(imgTag)) {
+    imgSel.value =timeOfDay;
+}
+imgSel.addEventListener('change', function (){  
+    var getValue = this.value;
+    // this в этом контексте - элемент, который запустил фукнцию. То же, что и select.value;
+    imgTag = getValue;
+    setLocalStorage();
+    getLocalStorage();
+    setBg();
+    return imgTag;
+  });
+
+  const imgSourceSelect = document.querySelector('.imgSource__select');
+  imgSourceSelect.value = getLocalStorage(imgSource);
+  if (!getLocalStorage(imgSource)) {
+    imgSourceSelect.value = "Github";
+  }
+  imgSourceSelect.addEventListener ('change', function() {
+      imgSource = this.value;  
+      setLocalStorage()
+      getLocalStorage() 
+      setBg();
+      return imgSource;
+    })
+  
+  console.log(imgSource);
+
 function setBg() {
     const timeOfDay = getTimeOfDay();
     
@@ -182,13 +216,14 @@ function setBg() {
     }
 }
 setBg();
-let randomApiImgNumber = (String(getRandomNum(0, 10)))
+let randomApiImgNumber = (String(getRandomNum(0, 100)))
 
 async function getLinkToImage() {
-    console.log(timeOfDay);
+    //console.log(timeOfDay);
+    console.log(imgTag);
 
     const image = new Image();
-    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=Mz9K4Kz00mI3uWYx1olNeAyxroSooaz-aPl9VA88HFA`;
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${imgTag}&client_id=Mz9K4Kz00mI3uWYx1olNeAyxroSooaz-aPl9VA88HFA`;
     const res = await fetch(url);
     const data = await res.json();
     const url2 = data.urls.regular;
@@ -201,14 +236,17 @@ async function getLinkToImage() {
 
   
 async function getLinkToFlickr() {
-   
+    //console.log(timeOfDay);
+    console.log(imgTag);
+
     const image = new Image();
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=7cb9db849f93d5ea788766499b12d5a8&tags=nature&extras=url_l&format=json&nojsoncallback=1`;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=7cb9db849f93d5ea788766499b12d5a8&tags=${imgTag}&extras=url_l&format=json&nojsoncallback=1`;
     const res = await fetch(url);
     const data = await res.json();
-    const url2 = data.photos.photo[randomApiImgNumber].url_l;
+    let randomFlikrImgNumber = (String(getRandomNum(0, data.photos.photo.length)))
+    const url2 = data.photos.photo[randomFlikrImgNumber].url_l;
     image.src = url2;
-    console.log(data.photos.photo[randomApiImgNumber].url_l);
+    console.log(data.photos.photo[randomFlikrImgNumber].url_l);
     image.onload = () => {
         body.style.backgroundImage = `url(${url2})`;
 }
@@ -258,8 +296,11 @@ function setLocalStorageWeather() {
 function getLocalStorageWeather() {
     if (localStorage.getItem('city')) {
         city.value = localStorage.getItem('city');
-        
-    } 
+    } else {
+     city.value = "Minsk";
+    }
+    getWeather()
+    return city.value;
 }
 
 async function getWeather() {
@@ -326,14 +367,8 @@ async function getWeather() {
     wind.textContent = `Скорость ветра: ${(Math.round(data.wind.speed))} м/с,`;
     humidity.textContent = `Влажность: ${(Math.round(data.main.humidity))}%`;
     error.textContent = "";
-    
-    
-
     };
-    //language ==="Ru" ? city.placeholder = '[Введите город]' : city.placeholder = '[Enter your city]';
-    //city.placeholder = list[1].userLang;
-    //console.log(userLang);
-    console.log(city.placeholder);
+
 }
 
 function setCity(event) {
@@ -440,13 +475,13 @@ playNextBut.addEventListener('click', playNext);
 playPrevBut.addEventListener('click', playPrev);
 
 const playListContainer = document.querySelector('.play-list');
-let img = document.createElement("IMG");
-img.src = '../assets/img/greenResize35.png';
+//let img = document.createElement("IMG");
+//img.src = '../assets/img/greenResize35.png';
 
 playList.forEach(el => {
         const li = document.createElement('li');
     li.classList.add('play-item');
-    li.append(img);
+    //li.append(img);
     li.addEventListener('click', playIt);
     li.textContent = el.title;
     playListContainer.append(li);
@@ -488,13 +523,8 @@ function playIt() {
         
 }
 let updateTimer;
-//updateTimer = setInterval(seekUpdate, 1000);
-
-
 let track_name = document.querySelector('.track-name');
 let now_playing = document.querySelector('.now-playing');
-
-
 
 let seek_slider = document.querySelector('.seek_slider');
 //let volume_slider = document.querySelector('.volume_slider');
@@ -504,27 +534,20 @@ let duration = document.querySelector('.duration');
 
 window.seekTo = function () {
     let seekto = audio.duration * (seek_slider.value / 100);
-    console.log(seekto);
    audio.currentTime = seekto;
 };
+
+
 
 const volumeSlider = document.querySelector('.volume_slider');
 function setAttributes(el, attrs) {
     for(var key in attrs){
     el.setAttribute(key, attrs[key]);
-    }
-    }
-    //const progressBar = document.querySelector(".progress");
+    }   }
+
 setAttributes(volumeSlider, { "type": "range", "min": "0", "max": "1", "step": "any", "value": "1" });
 volumeSlider.addEventListener("input", function(){ 
     audio.volume = volumeSlider.value; })
-
-
- 
-   // volumeSlider.style.width =  volumeSlider.value * 100 + "%";
-  //console.log(progressBar.style.width);
- 
-
 
 
 function reset(){
@@ -560,10 +583,11 @@ function seekUpdate() {
     }
   }
 
-function changeProgressBar() {
-    audio.currentTime = progressBar.value();
+  function setPlayerLang () {
+    language ==="Ru" ? now_playing.textContent = "Дорожка " + `${playNum + 1}` + " из " + `${playList.length}`: now_playing.textContent = "Playing " + `${playNum + 1}` + " of " + `${playList.length}`;
+    language ==="Ru" ? trackName.textContent = "Название дорожки" : trackName.textContent = "Track name";
 }
-//changeProgressBar()
+setPlayerLang ()
 
 let mute = document.querySelector('.fa-volume-mute');
 mute.onclick = function() {
@@ -599,26 +623,21 @@ document.addEventListener( 'click', (e) => {
     const withinBoundaries3 = e.composedPath().includes(switches);
     const withinBoundaries4 = e.composedPath().includes(header)
  
-	if ( (!e.composedPath().includes(switches) && withinBoundaries3)  || withinBoundaries2) {
+	if ( (!e.composedPath().includes(switches) && withinBoundaries)  || withinBoundaries2) {
 		popup.classList.remove('active')
 		croce.classList.remove('active'); 
         gear.classList.remove('active'); 
 	}
 })
 
-const imgSourceSelect = document.querySelector('.imgSource__select');
-imgSourceSelect.addEventListener ('change', function() {
-    imgSource = this.value;
-    setBg();
-  })
-console.log(imgSource);
+
 
 const state = [{
     language: 'en',
     photoSource: 'Github',
-    showItems: ['Выбор языка', 'Погода','Время','Приветствие', 'Цитаты', "Источник картинки", 'Плейер', 'Список дел']
+    showItems: ['Выбор языка', 'Погода','Время','Приветствие', 'Цитаты', "Источник картинки", 'Выберите тэг картинки', 'Плеер', 'Список дел']
   },
-  {showItems: ['Select Language', 'Show/Hide Weather','Show/Hide Time','Show/Hide Greetings', 'Show/Hide Quotes', "Select image source", 'Show/Hide Player', 'Show/Hide ToDo']
+  {showItems: ['Select Language', 'Show/Hide Weather','Show/Hide Time','Show/Hide Greetings', 'Select image tag', 'Show/Hide Quotes', "Select image source", 'Show/Hide Player', 'Show/Hide ToDo']
 
   },
   {Settings: ["Настройки", "Settings"]
@@ -629,108 +648,326 @@ show_weather: 'Показать/скрыть погоду',
 show_time: 'Показать/скрыть время', 
 show_greetings: 'Показать/скрыть приветствие', 
 show_quotes: 'Показать/скрыть цитаты', 
-show_player: 'Показать/скрыть плейер', 
+show_player: 'Показать/скрыть плеер', 
 show_todo: 'Показать/скрыть список дел'}
 ]
+const settingsTitle = document.querySelector('.popup__title');
+function changeTitle () {
+    language ==="Ru" ? settingsTitle.textContent = state[2].Settings[0] : settingsTitle.textContent = state[2].Settings[1]
+    console.log(state[2].Settings[0]);
+}
+changeTitle ()
 
 const showItems = document.querySelectorAll('.show-item');
 const showItemsArr = Array.from(showItems);
 
+function changeSetLang() {
+    if (language === "Ru") {
+        for(let i=0; i < showItemsArr.length; i++) {
+            showItemsArr[i].textContent = state[0].showItems[i];
+    
+        }
+      } else{
+        for(let i=0; i < showItemsArr.length; i++) {
+            showItemsArr[i].textContent = state[1].showItems[i];
+               }
+      }
+    }
 
+    
+    changeSetLang()
+    
+
+
+const quoteWrapper = document.querySelector('.quote-wrapper');
  const quotesOn = document.querySelector('.quotesOn');
  const quotesOff = document.querySelector('.quotesOff');
+ let quotesState = "On";
+ let greetingsState = "On";
+ let playerState = "On";
+ let weatherState = "On";
+ let timeState = "On";
+ let todoState = "On";
+ quotesOn.classList.add('active');
+ 
+ window.addEventListener('beforeunload', setLocalSetStorage);
+ window.addEventListener('load', getLocalSetStorage);
+ 
+
  quotesOff.addEventListener('click', function(){
-	quotesOff.classList.add('active');
+    quotesState = "Off";
+    setQuotes ()
+    return quotesState;
+});
+quotesOn.addEventListener('click', function(){
+    quotesState = "On";
+    setQuotes ()
+    return quotesState;
+ });
+
+function setQuotes () {
+   
+if (quotesState === "Off"){
+    quotesOff.classList.add('active');
     quotesOn.classList.remove('active');
-    footer.classList.add('active');
- })
- quotesOn.addEventListener('click', function(){
-	   quotesOff.classList.remove('active');
-       quotesOn.classList.add('active');
-       footer.classList.remove('active');
- })
+    quoteWrapper.classList.add('active');
+       
+ } else if (quotesState === "On"){
+    quotesOn.classList.add('active');
+    quotesOff.classList.remove('active');
+    quoteWrapper.classList.remove('active');
+      
+}}
+
+
+function setLocalSetStorage() {
+    localStorage.setItem('quotesState', quotesState);
+    localStorage.setItem('greetingsState', greetingsState);
+    localStorage.setItem('playerState', playerState);
+    localStorage.setItem('weatherState', weatherState);
+    localStorage.setItem('timeState', timeState);
+    localStorage.setItem('todoState', todoState);
+}
+
+function getLocalSetStorage() {
+    if (localStorage.getItem('quotesState')) {
+        quotesState = localStorage.getItem('quotesState');
+    } 
+    setQuotes ();
+    if (localStorage.getItem('greetingsState')) {
+        greetingsState = localStorage.getItem('greetingsState');
+    } 
+    setGreetings ();
+
+    if (localStorage.getItem('playerState')) {
+        playerState = localStorage.getItem('playerState');
+    } 
+   setPlayer ();
+
+   if (localStorage.getItem('weatherState')) {
+        weatherState = localStorage.getItem('weatherState');
+   } 
+   setWeather();
+
+    if (localStorage.getItem('timeState')) {
+   timeState = localStorage.getItem('timeState');
+        } 
+    setTime();
+    if (localStorage.getItem('todoState')) {
+        todoState = localStorage.getItem('todoState');
+    } 
+  setTodo();
+}
+
+
 
 const greetingsCont = document.querySelector('.greeting-container');
 const greetingsOn = document.querySelector('.greetingsOn');
 const greetingsOff = document.querySelector('.greetingsOff');
+greetingsOn.classList.add('active');
+console.log(greetingsState);
 
+ greetingsOff.addEventListener('click', function(){
+    greetingsState = "Off";
+    setGreetings ();
+    console.log(greetingsState);
+    return greetingsState;
+});
+    greetingsOn.addEventListener('click', function(){
+    greetingsState = "On";
+    setGreetings ();
+    console.log(greetingsState);
+    return greetingsState;
+ });
 
-greetingsOff.addEventListener('click', function(){
-	greetingsOff.classList.add('active');
+function setGreetings () {
+    if (greetingsState === "Off"){
+    greetingsOff.classList.add('active');
     greetingsOn.classList.remove('active');
     greetingsCont.classList.add('active');
- })
- greetingsOn.addEventListener('click', function(){
-	greetingsOn.classList.add('active');
+    
+    } else  if (greetingsState === "On"){
+    greetingsOn.classList.add('active');
     greetingsOff.classList.remove('active');
     greetingsCont.classList.remove('active');
- })
+    
+}}
 
- const player =  document.querySelector('.player');
- const playerOn = document.querySelector('.playerOn');
+const player =  document.querySelector('.player');
+const playerOn = document.querySelector('.playerOn');
 const playerOff = document.querySelector('.playerOff');
+playerOn.classList.add('active');
 
 playerOff.addEventListener('click', function(){
-	playerOff.classList.add('active');
-    playerOn.classList.remove('active');
-    player.classList.add('active');
+    playerState = "Off";
+	setPlayer ()
+    return playerState;
  })
  playerOn.addEventListener('click', function(){
-	playerOn.classList.add('active');
-    playerOff.classList.remove('active');
-    player.classList.remove('active');
+    playerState = "On";
+	setPlayer ();
+    return playerState;
  })
+
+ function setPlayer () {
+    if (playerState === "Off") {
+     playerOff.classList.add('active');
+     playerOn.classList.remove('active');
+     player.classList.add('active');
+     console.log(playerState);
+
+    } else  if (playerState === "On"){
+        playerOn.classList.add('active');
+        playerOff.classList.remove('active');
+        player.classList.remove('active');
+        console.log(playerState)
+   }
+}
 
 const weather = document.querySelector('.weather');
 const weatherOn = document.querySelector('.weatherOn');
 const weatherOff = document.querySelector('.weatherOff');
+weatherOn.classList.add('active');
 
 weatherOff.addEventListener('click', function(){
-	weatherOff.classList.add('active');
-    weatherOn.classList.remove('active');
-    weather.classList.add('active');
+    weatherState= "Off"
+	    setWeather ();
+    return weatherState;
  })
  weatherOn.addEventListener('click', function(){
-	weatherOn.classList.add('active');
-    weatherOff.classList.remove('active');
-    weather.classList.remove('active');
+    weatherState= "On"
+	    setWeather ();
+    return weatherState;
  })
  
+ function setWeather () {
+    if (weatherState === "Off") {
+        weatherOff.classList.add('active');
+        weatherOn.classList.remove('active');
+        weather.classList.add('active');
+     
+
+    } else  if (weatherState === "On"){
+        weatherOn.classList.add('active');
+    weatherOff.classList.remove('active');
+    weather.classList.remove('active');
+       
+   }
+}
+
+
  const dayDate = document.querySelector('.date');
  const timeOn = document.querySelector('.timeOn');
 const timeOff = document.querySelector('.timeOff');
+timeOn.classList.add('active');
 
 timeOff.addEventListener('click', function(){
-	timeOff.classList.add('active');
+    timeState = "Off";
+	
+    setTime ();
+    return timeState;
+ })
+ timeOn.addEventListener('click', function(){
+    timeState = "On"
+	
+    setTime ();
+    return timeState;
+ })
+ function setTime () {
+    if (timeState === "Off") {
+        timeOff.classList.add('active');
     timeOn.classList.remove('active');
     time.classList.add('active');
     dayDate.classList.add('active');
- })
- timeOn.addEventListener('click', function(){
-	timeOn.classList.add('active');
-    timeOff.classList.remove('active');
-    time.classList.remove('active');
-    dayDate.classList.remove('active');
- })
+     
 
-const toDo = document.querySelector('.toDo');
+    } else  if (timeState === "On"){
+        timeOn.classList.add('active');
+        timeOff.classList.remove('active');
+        time.classList.remove('active');
+        dayDate.classList.remove('active');
+   }
+}
+
+const toDo = document.querySelector('.todo-wrapper');
 const todoOn = document.querySelector('.todoOn');
 const todoOff = document.querySelector('.todoOff')
+
+todoOn.classList.add('active');
+
 todoOff.addEventListener('click', function(){
-	todoOff.classList.add('active');
-    todoOn.classList.remove('active');
-    toDo.classList.add('active');
+	todoState = "Off";
+    setTodo ();
+    return todoState;
  })
  todoOn.addEventListener('click', function(){
-	todoOn.classList.add('active');
-    todoOff.classList.remove('active');
-    toDo.classList.remove('active');
+	todoState = "On";
+    setTodo ();
+    return todoState;
  })
+ function setTodo () {
+    if (todoState === "Off") {
+        todoOff.classList.add('active');
+    todoOn.classList.remove('active');
+    toDo.classList.add('active');
+
+    } else  if (todoState === "On"){
+        todoOn.classList.add('active');
+        todoOff.classList.remove('active');
+        toDo.classList.remove('active');
+       
+   }
+}
+
+
+ const submitForm = document.querySelector(".add");
+ const addButton = document.querySelector(".add-todo");
+ const todoList = document.querySelector(".todos");
+ const list = document.querySelectorAll(".todos li");
  
-
-
-
-
+ const lang = navigator.language;
+ 
+ //let date = new Date();
+ 
+ let dayName = date.toLocaleString(lang, {
+   weekday: "long"
+ });
+ 
+ let listLenght = list.lenght;
+ 
+ const generateTempalate = (todo) => {
+   const html = `<li>
+                   <input type="checkbox" id="todo_${listLenght}">
+                   <label for="todo_${listLenght}">
+                     <span class="check"></span>
+                     ${todo}
+                   </label>
+                   <i class="far fa-trash-alt delete"></i>
+                 </li>`;
+   todoList.innerHTML += html;
+ };
+ 
+ function addTodos(e) {
+   e.preventDefault();
+   const todo = submitForm.add.value.trim();
+   if (todo.length) {
+     listLenght = listLenght + 1;
+     generateTempalate(todo);
+     submitForm.reset();
+   }
+ }
+ 
+ submitForm.addEventListener("submit", addTodos);
+ addButton.addEventListener("click", addTodos);
+ 
+ function deleteTodos(e) {
+   if (e.target.classList.contains("delete")) {
+     e.target.parentElement.remove();
+   }
+ }
+ 
+ todoList.addEventListener("click", deleteTodos);
+  
 
 
 //const list = [
