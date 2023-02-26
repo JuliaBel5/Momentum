@@ -9,6 +9,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 * {
   box-sizing: border-box;
@@ -372,10 +373,10 @@ height: 330px;
 
  .popup__title {
   color: rgb(235, 172, 47);
-  font-size: 24px;
-  font-weight: 700px;
-  padding-top: 10px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px auto;
+  margin-bottom: 0;
   height: 30px;
   
  }
@@ -383,7 +384,7 @@ height: 330px;
 .popup__body {
   display: flex;
   width: 350px;
-  height: 330px;
+  height: 340px;
   opacity: 1;
   position: top;
 
@@ -413,6 +414,7 @@ height: 330px;
 
 .imgSource__select {
 margin: 10px;
+font-size: 14px;
 }
 
 .language__select, .greetings__select,
@@ -490,15 +492,17 @@ margin: 10px;
   justify-content: space-between;
   align-items: flex-start;
   row-gap: 5px;
-  width: 190px;
+  width: 210px;
   min-height: 180px;
   text-align: left;
   transition: all 0.3s linear;
+  overflow: hidden;
 }
 .weather.active {
-  transform: translate(80%, -20%);
+  transform: translate(120%, -20%);
   visibility: hidden;
   transition: all 0.3s;
+  overflow: hidden;
 }
 
 .weather-error {
@@ -592,12 +596,12 @@ margin: 10px;
   font-family: 'Arial-MT';
   font-size: 100px;
   letter-spacing: -4px;
-  transition: all 0.3s;
+  transition: all 0.3s linear;
 }
 .time.active {
-  transform: translate(-120%, -20%);
+  transform: translate(-180%, 20%);
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all 0.3s linear;
 }
 
 
@@ -605,12 +609,12 @@ margin: 10px;
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
-  transition: all 0.3s;
+  transition: all 0.3s linear;
 }
 .date.active {
-  transform: translate(-80%, -20%);
+  transform: translate(-220%, -20%);
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all 0.3s linear;
 }
 
 .greeting-container {
@@ -697,13 +701,13 @@ margin: 10px;
   border-radius: 7px;
   height: 100%;
   margin: 0;
-  transition: all 0.3s;
+  transition: all 0.4s linear;
 }
 
 .todo-wrapper.active {
-  transform: translate(-180%, 20%);
+  transform: translate(-220%, 20%);
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all 0.4s linear;
 }
 
  
