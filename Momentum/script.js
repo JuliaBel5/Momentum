@@ -170,7 +170,7 @@ let imgTagsArr = Array.from(imgTags);
 let imgTag = imgSel.value;
 imgSel.value = getLocalStorage(imgTag);
 if (!getLocalStorage(imgTag)) {
-    imgSel.value =timeOfDay;
+    imgSel.value = getTimeOfDay();
 }
 imgSel.addEventListener('change', function (){  
     var getValue = this.value;
