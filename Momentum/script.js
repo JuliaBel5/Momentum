@@ -64,7 +64,7 @@ function changeLang() {
     setPlayerLang ()
     changeSetLang();
     changeTitle ();
-    
+    setTodoLang();
 }
 let userLang = language;
 console.log(userLang);
@@ -117,7 +117,7 @@ function getTimeOfDay() {
    
 }
 
-console.log(timeOfDay);
+//console.log(timeOfDay);
 
 function showGreeting() {
  let greetingText ="";
@@ -246,7 +246,7 @@ async function getLinkToFlickr() {
     let randomFlikrImgNumber = (String(getRandomNum(0, data.photos.photo.length)))
     const url2 = data.photos.photo[randomFlikrImgNumber].url_l;
     image.src = url2;
-    console.log(data.photos.photo[randomFlikrImgNumber].url_l);
+    //console.log(data.photos.photo[randomFlikrImgNumber].url_l);
     image.onload = () => {
         body.style.backgroundImage = `url(${url2})`;
 }
@@ -654,7 +654,7 @@ show_todo: 'Показать/скрыть список дел'}
 const settingsTitle = document.querySelector('.popup__title');
 function changeTitle () {
     language ==="Ru" ? settingsTitle.textContent = state[2].Settings[0] : settingsTitle.textContent = state[2].Settings[1]
-    console.log(state[2].Settings[0]);
+
 }
 changeTitle ()
 
@@ -765,7 +765,6 @@ const greetingsCont = document.querySelector('.greeting-container');
 const greetingsOn = document.querySelector('.greetingsOn');
 const greetingsOff = document.querySelector('.greetingsOff');
 greetingsOn.classList.add('active');
-console.log(greetingsState);
 
  greetingsOff.addEventListener('click', function(){
     greetingsState = "Off";
@@ -820,7 +819,6 @@ playerOff.addEventListener('click', function(){
         playerOn.classList.add('active');
         playerOff.classList.remove('active');
         player.classList.remove('active');
-        console.log(playerState)
    }
 }
 
@@ -919,14 +917,22 @@ todoOff.addEventListener('click', function(){
    }
 }
 
-
+const todoTitle = document.querySelector(".todo-title");
  const submitForm = document.querySelector(".add");
  const addButton = document.querySelector(".add-todo");
  const todoList = document.querySelector(".todos");
  const list = document.querySelectorAll(".todos li");
  
- const lang = navigator.language;
- 
+ const lang = language;
+
+ function setTodoLang() {
+ if (language === "Ru") {
+    todoTitle.textContent = "Список дел";
+ } if (language === "En") {
+    todoTitle.textContent = "ToDo List"
+ }
+}
+setTodoLang();
  //let date = new Date();
  
  let dayName = date.toLocaleString(lang, {
@@ -936,7 +942,7 @@ todoOff.addEventListener('click', function(){
  let listLenght = list.lenght;
  
  const generateTempalate = (todo) => {
-   const html = `<li>
+   const html = `<li> 
                    <input type="checkbox" id="todo_${listLenght}">
                    <label for="todo_${listLenght}">
                      <span class="check"></span>
@@ -944,7 +950,7 @@ todoOff.addEventListener('click', function(){
                    </label>
                    <i class="far fa-trash-alt delete"></i>
                  </li>`;
-   todoList.innerHTML += html;
+   todoList.innerHTML += html; // добавим новую лишку в index.html
  };
  
  function addTodos(e) {
@@ -957,16 +963,16 @@ todoOff.addEventListener('click', function(){
    }
  }
  
- submitForm.addEventListener("submit", addTodos);
- addButton.addEventListener("click", addTodos);
+ submitForm.addEventListener("submit", addTodos); // можно добавлять клавишей "Ввод"
+ addButton.addEventListener("click", addTodos); // можно добавлять плюсом
  
- function deleteTodos(e) {
+ function deleteTodos(e) { // определяем элемент к удалению по месту клика
    if (e.target.classList.contains("delete")) {
      e.target.parentElement.remove();
    }
  }
  
- todoList.addEventListener("click", deleteTodos);
+ todoList.addEventListener("click", deleteTodos); // клик по мусорному ведру
   
 
 
@@ -991,15 +997,5 @@ todoOff.addEventListener('click', function(){
     
     
     
-   
-   
-   // setTimeout(showTime, 1000);
-   // showDate();
-  //  showGreeting();
-   // 
-    //wind.textContent = `Скорость ветра: ${(Math.round(data.wind.speed))} м/с,`;
-     
-   //  getTimeOfDay();
-     //getWeather();
- //});
+  
 
