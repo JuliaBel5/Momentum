@@ -411,7 +411,7 @@ playBtn.addEventListener('click', playAudio);
 function playAudio() {
 
     if (!isPlay) {
-        //audio.currentTime = 0;
+        
         audio.play();
         isPlay = true;
         playBtn.classList.toggle('pause');
@@ -421,7 +421,7 @@ function playAudio() {
         duration.textContent = playList[playNum].duration;
         updateTimer = setInterval(seekUpdate, 1000);
 
-        //reset();
+       
     } else {
         audio.pause();
         isPlay = false
@@ -497,12 +497,22 @@ audio.addEventListener('ended', function () {
 
 const playItems= document.querySelectorAll('.play-item');
 let playItemsArr = Array.from(playItems);
+//let Index = 0;
+//playItemsArr.forEach((el, index) => {
+   // el.addEventListener('click', () => {
+    //    console.log(index);
+    //Index = index;
+   // });
+//});  
+ 
 
 
 function playIt() {
     if (!isPlay) {
-    reset();
-     audio.currentTime = 0;
+        if (playNum === playItemsArr.indexOf(this)){
+            playAudio();
+        } else {
+    
     playNum = playItemsArr.indexOf(this);
     audio.src = playList[playNum].src;
     audio.play();
@@ -513,15 +523,16 @@ function playIt() {
     now_playing.textContent = "Playing " + `${playNum +1}` + " of " + `${playList.length}`;
     duration.textContent = playList[playNum].duration;
     updateTimer = setInterval(seekUpdate, 1000);
-
+        }
 } else {
+   
     audio.pause();
     isPlay = false
     playBtn.classList.toggle('pause');
     playItems[playNum].classList.toggle('item-active');
+}       
 }
-        
-}
+
 let updateTimer;
 let track_name = document.querySelector('.track-name');
 let now_playing = document.querySelector('.now-playing');
@@ -532,9 +543,10 @@ let curr_time = document.querySelector('.current-time');
 let duration = document.querySelector('.duration');
 
 
-window.seekTo = function () {
-    let seekto = audio.duration * (seek_slider.value / 100);
+document.seekTo = function () {
+   let seekto = audio.duration * (seek_slider.value / 100);
    audio.currentTime = seekto;
+   return seekto
 };
 
 
@@ -585,7 +597,7 @@ function seekUpdate() {
 
   function setPlayerLang () {
     language ==="Ru" ? now_playing.textContent = "Дорожка " + `${playNum + 1}` + " из " + `${playList.length}`: now_playing.textContent = "Playing " + `${playNum + 1}` + " of " + `${playList.length}`;
-    language ==="Ru" ? trackName.textContent = "Название дорожки" : trackName.textContent = "Track name";
+   // language ==="Ru" ? trackName.textContent = "Название дорожки" : trackName.textContent = "Track name";
 }
 setPlayerLang ()
 
