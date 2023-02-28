@@ -154,10 +154,16 @@ function getLocalStorage() {
     } 
     if (localStorage.getItem('imgTag')) {
         imgTag = localStorage.getItem('imgTag');
-    } 
+        imgSel.value = imgTag;
+    } else {
+        imgTag = getTimeOfDay();
+        imgSel.value = imgTag;
+    }
     if (localStorage.getItem('imgSource')) {
         imgSource = localStorage.getItem('imgSource');
-     }
+        //imgSourceSelect.value = imgSource;
+        
+     } 
     if (localStorage.getItem('language')) {
         language = localStorage.getItem('language');
 }}
@@ -169,9 +175,9 @@ let imgTags = document.querySelectorAll('.imgTags');
 let imgTagsArr = Array.from(imgTags);
 let imgTag = imgSel.value;
 imgSel.value = getLocalStorage(imgTag);
-if (!getLocalStorage(imgTag)) {
-    imgSel.value = getTimeOfDay();
-}
+
+
+//if (!getLocalStorage(imgTag)) {
 imgSel.addEventListener('change', function (){  
     var getValue = this.value;
     // this в этом контексте - элемент, который запустил фукнцию. То же, что и select.value;
@@ -181,12 +187,11 @@ imgSel.addEventListener('change', function (){
     setBg();
     return imgTag;
   });
-
+//}
   const imgSourceSelect = document.querySelector('.imgSource__select');
-  imgSourceSelect.value = getLocalStorage(imgSource);
-  if (!getLocalStorage(imgSource)) {
-    imgSourceSelect.value = "Github";
-  }
+  //imgSourceSelect.value = getLocalStorage(imgSource);
+  imgSourceSelect.value = imgSource
+  
   imgSourceSelect.addEventListener ('change', function() {
       imgSource = this.value;  
       setLocalStorage()
@@ -194,7 +199,11 @@ imgSel.addEventListener('change', function (){
       setBg();
       return imgSource;
     })
-  
+   // if (!getLocalStorage(imgSource)) {
+       // imgSourceSelect.value = "Github";
+      //} else {
+        //imgSourceSelect.value = getLocalStorage(imgSource)
+      //}
   console.log(imgSource);
 
 function setBg() {
