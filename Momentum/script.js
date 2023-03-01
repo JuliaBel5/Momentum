@@ -566,7 +566,7 @@ function setAttributes(el, attrs) {
     el.setAttribute(key, attrs[key]);
     }   }
 
-setAttributes(volumeSlider, { "type": "range", "min": "0", "max": "1", "step": "any", "value": "1" });
+setAttributes(volumeSlider, { "type": "range", "min": "0", "max": "1", "step": "any", "value": "0.5" });
 volumeSlider.addEventListener("input", function(){ 
     audio.volume = volumeSlider.value; })
 
@@ -658,7 +658,7 @@ const state = [{
     photoSource: 'Github',
     showItems: ['Выбор языка', 'Погода','Время','Приветствие', 'Цитаты', "Источник картинки", 'Выберите тэг картинки', 'Плеер', 'Список дел']
   },
-  {showItems: ['Select Language', 'Show/Hide Weather','Show/Hide Time','Show/Hide Greetings', 'Select image tag', 'Show/Hide Quotes', "Select image source", 'Show/Hide Player', 'Show/Hide ToDo']
+  {showItems: ['Select Language', 'Show/Hide Weather','Show/Hide Time','Show/Hide Greetings', 'Show/Hide Quotes', "Select image source", 'Select image tag', 'Show/Hide Player', 'Show/Hide ToDo']
 
   },
   {Settings: ["Настройки", "Settings"]
@@ -944,6 +944,8 @@ const todoTitle = document.querySelector(".todo-title");
  const todoList = document.querySelector(".todos");
  const list = document.querySelectorAll(".todos li");
  
+ let arrList = Array.from(list);
+ 
  const lang = language;
 
  function setTodoLang() {
@@ -960,25 +962,26 @@ setTodoLang();
    weekday: "long"
  });
  
- let listLenght = list.lenght;
- 
+ let listLength = arrList.length;
+ console.log(listLength);
  const generateTempalate = (todo) => {
    const html = `<li> 
-                   <input type="checkbox" id="todo_${listLenght}">
-                   <label for="todo_${listLenght}">
+                   <input type="checkbox" id="todo_${listLength}">
+                   <label for="todo_${listLength}">
                      <span class="check"></span>
                      ${todo}
                    </label>
                    <i class="far fa-trash-alt delete"></i>
                  </li>`;
    todoList.innerHTML += html; // добавим новую лишку в index.html
+  
  };
  
  function addTodos(e) {
    e.preventDefault();
    const todo = submitForm.add.value.trim();
    if (todo.length) {
-     listLenght = listLenght + 1;
+     listLength = listLength + 1;
      generateTempalate(todo);
      submitForm.reset();
    }
@@ -993,7 +996,7 @@ setTodoLang();
    }
  }
  
- todoList.addEventListener("click", deleteTodos); // клик по мусорному ведру
+ todoList.addEventListener("click", deleteTodos); // клик по лишке
   
 
 
